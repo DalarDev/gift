@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift</title>
+<style>
+  
+    /* STOP STEALING MY CODES BRO */
+  
+  
+  
+  
+  
+    /* ALSO STOP BYPASSING IT */
+  
+  
+  
+  
+  
+
+    .input-container {
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        width: 200px;
+        padding: 5px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        position: absolute;
+        top: 200px;
+        left: 70px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        top: 240px;
+        left: 130px;
+    }
+    #para {
+        position: absolute;
+        top: 150px;
+        left: 110px;
+        font-size: 18px;
+    }
+    #x {
+        /* audio */
+        position: absolute;
+        top: 150px;
+        left: 30px;
+        display: none;
+    }
+    /* CSS for main screen */
+    #main-screen {
+        display: none;
+    }
+    .maintext {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 45px;
+    }
+    #link {
+        font-size: 13px;
+        position: absolute;
+        top: 500px;
+    }
+    #popupImage  {
+        position: absolute;
+        left: 50px;
+    } 
+    #pmain {
+        font-weight: bold;
+        font-size: 30px;
+        position: absolute;
+        top: 400px;
+        left: 80px;
+    }
+    #audioImage {
+        width: 100px;
+        cursor: pointer;
+        position: absolute;
+        top: 150px;
+        left: 105px;
+        width: 150px;
+        height: auto;
+    }
+    #lyrics {
+            
+            font-size: 30px;
+            white-space: pre-line;
+            font-family: monospace;
+            line-height: 1.5;
+}
+     .giftp {
+        position: absolute;
+        top: 110px;
+        left: 124px;
+        font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<!-- Introduction Screen -->
+<div id="introduction">
+    <p id="para" >Enter your name</p>
+    <div class="input-container">
+        <input type="text" id="answerInput" placeholder="First name">
+    </div>
+    <button onclick="checkAnswer()">Submit</button>
+</div>
+
+<!-- Main Screen -->
+<div  id="main-screen">
+<p id="giftp" class="giftp">TAP THE GIFT!</p>
+    <img id="audioImage" src="https://i.ibb.co/4dY0MKn/1713716113692.png" alt="Play Audio" onclick="playAudio()">
+    <div id="lyrics"></div>
+
+    <script>
+        const lyrics = [
+            {text: "Ako nalang sana 🥺\n", charDelay: 250, lineDelay: 2400},
+            {text: "Ako nalang kung pwede lang\n", charDelay: 60, lineDelay: 100},
+            {text: "I wish 🙏😔\n", charDelay: 30, lineDelay: 600},
+            {text: "Ako nalang\n", charDelay: 55, lineDelay: 300},
+            {text: "Ako nalang, I guess 🙃\n", charDelay: 65, lineDelay: 900},
+            {text: "Ako nalang\n", charDelay: 50, lineDelay: 300},
+            {text: "Ang paborito mong ma-miss 🙁\n", charDelay: 70, lineDelay: 1000},
+            {text: "Oh yes 😘🤩\n", charDelay: 45, lineDelay: 700},
+        ];
+
+        function typeWriter(text, index, charDelay, cb) {
+            if (index < text.length) {
+                document.getElementById('lyrics').textContent += text.charAt(index);
+                setTimeout(() => {
+                    typeWriter(text, index + 1, charDelay, cb);
+                }, charDelay); // Delay between characters
+            } else {
+                cb();
+            }
+        }
+
+        function printLyrics(index) {
+            if (index < lyrics.length) {
+                const line = lyrics[index];
+                // Add initial delay before starting to print the lyrics
+                const initialDelay = index === 0 ? 1500 : 0; // Adjust the initial delay time as needed (in milliseconds)
+                setTimeout(() => {
+                    typeWriter(line.text, 0, line.charDelay, () => {
+                        setTimeout(() => {
+                            document.getElementById('lyrics').innerHTML += '<br><br>'; // Add line breaks
+                            printLyrics(index + 1);
+                        }, line.lineDelay); // Delay between lines
+                    });
+                }, initialDelay);
+            }
+        }
+
+        function playAudio() {
+            var audio = new Audio('https://www.dropbox.com/scl/fi/yyr75s59kl6yt1azh28er/lv_0_20240422133507.mp3?rlkey=kqzl8fal9xt7h8vxnjxoi3j27&dl=1');
+            audio.play();
+            printLyrics(0); // Start printing the lyrics
+            document.getElementById('audioImage').style.display = 'none'; // Hide the image
+document.getElementById('giftp').style.display = 'none';
+        }
+    </script>
+</div>
+
+<script>
+function checkAnswer() {
+    var answer = document.getElementById("answerInput").value;
+    if (answer.toLowerCase() === "keziah") {
+        // Hide introduction screen and display main screen
+        document.getElementById("introduction").style.display = "none";
+        document.getElementById("main-screen").style.display = 'block';      
+       alert("HI, KEZIAH!! I ACTUALLY CODED THIS FOR U :3");
+        }
+     else {
+        alert("Invalid name.");
+    }
+}
+</script>
+
+</body>
+</html>
